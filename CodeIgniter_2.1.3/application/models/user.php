@@ -251,11 +251,11 @@ Class User extends CI_Model
                 {
                     foreach ($result as $row)
                     {
-                        array_push($deliveries, array('fs_esl' => $result['fs_esl'],
-                                                        'delivery_id' => $result['delivery_id'],
-                                                        'deliveryAddr' => $result['deliveryAddr'],
-                                                        'deliveryTime' => $result['deliveryTime'],
-                                                        'pickupTime' => $result['pickupTime']));
+                        array_push($deliveries, array('fs_esl' => $row['fs_esl'],
+                                                        'delivery_id' => $row['delivery_id'],
+                                                        'deliveryAddr' => $row['deliveryAddr'],
+                                                        'deliveryTime' => $row['deliveryTime'],
+                                                        'pickupTime' => $row['pickupTime']));
                     }
 
                     return $deliveries;
