@@ -14,8 +14,8 @@
            <th>Delivery Time</th>
            <th>Delivered</th>
        </tr>
-   <?php if (count($bids) > 0):
-        foreach ($bids as $bid):
+   <?php if (count($deliveries) > 0):
+        foreach ($delivieries as $bid):
             echo "<tr><td>" . $bid['fs_esl'] . "</td><td>" . $bid['delivery_id'] . "</td><td>" . $bid['pickupTime'] . "</td><td>".$bid['deliveryAddr']."</td><td>".$bid['deliveryTime']."</td><td><a href='".base_url()."/index.php/delivered/".$deliveryId."/".$fs_esl."'>Delivered</a></td></tr>";
         endforeach;
    endif; ?>
