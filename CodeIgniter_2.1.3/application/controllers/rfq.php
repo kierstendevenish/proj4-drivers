@@ -60,15 +60,15 @@ class Rfq extends CI_Controller {
             $estimate = strtotime($deliveryTime) + 1800;
 
             //send bid to flowershop
-            $fields_str = '_name=bid_available&_domain=rfq&driverName='.$name.'&deliveryId='.$id.'&estDeliveryTime='.$estimate.'&rate='.$rate;
+            $fields_str = '_name=bid_available&_domain=rfq&driverName='.$username.'&deliveryId='.$id.'&estDeliveryTime='.$estimate.'&rate='.$rate;
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "http://requestb.in/16nkcbg1");
+            curl_setopt($ch, CURLOPT_URL, $fs_esl);
             curl_setopt($ch, CURLOPT_POST, 6);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_str);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
             curl_exec($ch);
             curl_close($ch);
-log_message('info',$fs_esl);
+
             //text driver with bid details
             $bidDetails = $name . ", you have made a bid for delivery " . $id . ". If accepted, pickup at " . $pickupTime . ".";
             $this->load->library('twilio');
