@@ -215,7 +215,6 @@ Class User extends CI_Model
 
         function getUserByPhone($phone = '')
         {
-            log_message("info", $id);
             $db = new PDO('sqlite:./application/db/deliveryDrivers');
             $result = $db->query("SELECT username FROM Users WHERE phone=".$phone.";");
 
