@@ -115,6 +115,7 @@ class Rfq extends CI_Controller {
 
         function delivered($deliveryId, $fs_esl)
         {
+            var_dump($fs_esl);
         }
 }
 
