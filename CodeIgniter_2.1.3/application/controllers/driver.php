@@ -128,8 +128,11 @@ class Driver extends CI_Controller {
             $username = $session_data['username'];
 
             $this->load->model('user');
-            $deliveries = $this->user->getDeliveries($username);
-            var_dump($deliveries);
+            $data['deliveries'] = $this->user->getDeliveries($username);
+
+            $this->load->view('templates/header');
+            $this->load->view('list_deliveries', $data);
+            $this->load->view('templates/footer');
         }
 
 }
