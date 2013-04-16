@@ -115,5 +115,11 @@ Class Request extends CI_Model
 
                 return '';
         }
+
+        function bidAccepted($username = '', $deliveryId = '')
+        {
+            $db = new PDO('sqlite:./application/db/deliveryDrivers');
+            $result = $db->query("UPDATE Bids SET accepted=1 WHERE username='".$username."' AND delivery_id='".$deliveryId."';");
+        }
 }
 ?>

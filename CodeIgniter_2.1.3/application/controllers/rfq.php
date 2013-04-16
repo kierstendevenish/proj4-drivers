@@ -56,7 +56,8 @@ class Rfq extends CI_Controller {
                 }
                 else if ($name == 'bid_awarded')
                 {
-                    log_message("info", "bid accepted");
+                    $driverName = $this->input->post('driverName');
+                    $deliveryId = $this->input->post('deliveryId');
                 }
             }
 	}
