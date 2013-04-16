@@ -9,42 +9,52 @@ class Rfq extends CI_Controller {
 
 	function index($uid = '')
 	{
-            //get user with uid
-            $this->load->model('user');
-            $user = $this->user->getUserByEsl($uid);
-
-            //get n miles and location from event body
-            $loc = $this->user->getLocation($user);
-
-            //if within n miles (for this purpose, half a point)
-            $shopCoords = $this->input->post('shopCoords');
-            $shopCoordsArr = explode(',', $shopCoords);
-            
-            $latitude = $shopCoordsArr[0];
-            $longitude = $shopCoordsArr[1];
-            $this->load->model('request');
-            $distance = $this->request->calcDistance($latitude, $longitude, $loc['lat'], $loc['long']);
-
-            $id = $this->input->post('id');
-            $deliveryAddr = $this->input->post('deliveryAddr');
-            $deliveryTime = $this->input->post('deliveryTime');
-            $pickupTime = $this->input->post('pickupTime');
-            $shopName = $this->input->post('shopName');
-            $shopEsl = $this->input->post('shopEsl');
-
-            if ($distance < 0.5)
+            if ($domain == 'rfq')
             {
-                //submit bid to flower shop
-                $this->makeBid($user, $id, $shopEsl, $deliveryTime, $deliveryAddr, $pickupTime);
-            }
-            else
-            {
-                $this->user->saveRequest($id, $shopEsl, $deliveryTime, $deliveryAddr, $pickupTime);
+                if ($name == 'delivery_ready')
+                {
+                    //get user with uid
+                    $this->load->model('user');
+                    $user = $this->user->getUserByEsl($uid);
 
-                //text driver with delivery request
-                $details = "Delivery request. P: " . $pickupTime . " A: " . $deliveryAddr . " D: " . $deliveryTime;
-                $this->load->library('twilio');
-                $this->twilio->sms(18016573680, 18016806793, $details);
+                    //get n miles and location from event body
+                    $loc = $this->user->getLocation($user);
+
+                    //if within n miles (for this purpose, half a point)
+                    $shopCoords = $this->input->post('shopCoords');
+                    $shopCoordsArr = explode(',', $shopCoords);
+
+                    $latitude = $shopCoordsArr[0];
+                    $longitude = $shopCoordsArr[1];
+                    $this->load->model('request');
+                    $distance = $this->request->calcDistance($latitude, $longitude, $loc['lat'], $loc['long']);
+
+                    $id = $this->input->post('id');
+                    $deliveryAddr = $this->input->post('deliveryAddr');
+                    $deliveryTime = $this->input->post('deliveryTime');
+                    $pickupTime = $this->input->post('pickupTime');
+                    $shopName = $this->input->post('shopName');
+                    $shopEsl = $this->input->post('shopEsl');
+
+                    if ($distance < 0.5)
+                    {
+                        //submit bid to flower shop
+                        $this->makeBid($user, $id, $shopEsl, $deliveryTime, $deliveryAddr, $pickupTime);
+                    }
+                    else
+                    {
+                        $this->user->saveRequest($id, $shopEsl, $deliveryTime, $deliveryAddr, $pickupTime);
+
+                        //text driver with delivery request
+                        $details = "Delivery request. P: " . $pickupTime . " A: " . $deliveryAddr . " D: " . $deliveryTime;
+                        $this->load->library('twilio');
+                        $this->twilio->sms(18016573680, 18016806793, $details);
+                    }
+                }
+                else if ($name == 'bid_awarded')
+                {
+                    log_message("info", "bid accepted");
+                }
             }
 	}
 
