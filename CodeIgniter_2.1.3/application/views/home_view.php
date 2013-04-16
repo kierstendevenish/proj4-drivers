@@ -7,7 +7,7 @@
    <a href='driver/foursquareAuth' target='_blank'>Connect with Foursquare</a><br>
    <a href='driver/listEsls'>View Esls</a><br>
    <a href='driver/listBids'>Bid History</a><br>
-   <a href='driver/deliveries'Deliveries</a><br>
+   <a href='driver/deliveries'>Deliveries</a><br>
    
    <br><a href="home/logout">Logout</a>
  </body>
