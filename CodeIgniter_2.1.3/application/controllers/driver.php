@@ -115,10 +115,10 @@ class Driver extends CI_Controller {
             $foursquareId = $json['user']['id'];
             $lat = $json['venue']['location']['lat'];
             $long = $json['venue']['location']['lng'];
-log_message("info", "got json");
+
             $this->load->model('user');
             $username = $this->user->getUserByFoursquareId($foursquareId);
-log_message("info", $username);
+
             $this->user->saveLocation($username, $lat, $long);
         }
 
