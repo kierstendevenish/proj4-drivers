@@ -68,7 +68,7 @@ class Rfq extends CI_Controller {
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
             curl_exec($ch);
             curl_close($ch);
-
+log_message($fs_esl);
             //text driver with bid details
             $bidDetails = $name . ", you have made a bid for delivery " . $id . ". If accepted, pickup at " . $pickupTime . ".";
             $this->load->library('twilio');
