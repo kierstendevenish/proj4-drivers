@@ -9,6 +9,9 @@ class Rfq extends CI_Controller {
 
 	function index($uid = '')
 	{
+            $name = $this->input->post('_name');
+            $domain = $this->input->post('_domain');
+
             if ($domain == 'rfq')
             {
                 if ($name == 'delivery_ready')
