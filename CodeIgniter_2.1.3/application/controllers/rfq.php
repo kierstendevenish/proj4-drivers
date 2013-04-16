@@ -9,6 +9,7 @@ class Rfq extends CI_Controller {
 
 	function index($uid = '')
 	{
+            log_message('info','here');
             //get user with uid
             $this->load->model('user');
             $user = $this->user->getUserByEsl($uid);
