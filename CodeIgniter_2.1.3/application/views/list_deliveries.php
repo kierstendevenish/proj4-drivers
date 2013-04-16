@@ -16,7 +16,7 @@
        </tr>
    <?php if (count($deliveries) > 0):
         foreach ($deliveries as $bid):
-            echo "<tr><td>" . $bid['fs_esl'] . "</td><td>" . $bid['delivery_id'] . "</td><td>" . $bid['pickupTime'] . "</td><td>".$bid['deliveryAddr']."</td><td>".$bid['deliveryTime']."</td><td><a href='".base_url()."index.php/rfq/delivered/".$bid['delivery_id']."/".$bid['fs_esl']."'>Delivered</a></td></tr>";
+            echo "<tr><td>" . $bid['fs_esl'] . "</td><td>" . $bid['delivery_id'] . "</td><td>" . $bid['pickupTime'] . "</td><td>".$bid['deliveryAddr']."</td><td>".$bid['deliveryTime']."</td><td><a href='".base_url()."index.php/rfq/delivered/".$bid['delivery_id']."'>Delivered</a></td></tr>";
         endforeach;
    endif; ?>
    </table>
