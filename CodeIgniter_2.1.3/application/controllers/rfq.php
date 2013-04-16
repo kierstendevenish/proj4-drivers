@@ -58,6 +58,9 @@ class Rfq extends CI_Controller {
                 {
                     $driverName = $this->input->post('driverName');
                     $deliveryId = $this->input->post('deliveryId');
+
+                    $this->load->model('request');
+                    $this->request->bidAccepted($driverName, $deliveryId);
                 }
             }
 	}
