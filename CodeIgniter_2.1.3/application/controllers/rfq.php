@@ -112,6 +112,10 @@ class Rfq extends CI_Controller {
 
             $this->load->view('sms');
         }
+
+        function delivered($deliveryId, $fs_esl)
+        {
+        }
 }
 
 ?>
