@@ -122,6 +122,16 @@ class Driver extends CI_Controller {
             $this->user->saveLocation($username, $lat, $long);
         }
 
+        function deliveries()
+        {
+            $session_data = $this->session->userdata('logged_in');
+            $username = $session_data['username'];
+
+            $this->load->model('user');
+            $deliveries = $this->user->getDeliveries($username);
+            var_dump($deliveries);
+        }
+
 }
 
 ?>
