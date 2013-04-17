@@ -118,6 +118,10 @@ class Rfq extends CI_Controller {
             $this->load->model('request');
             $esl = $this->request->getShopEslByRequest($deliveryId);
 
+            $session_data = $this->session->userdata('logged_in');
+            $username = $session_data['username'];
+            $this->request->delivered($username, $deliveryId);
+
             $fields_str = '_name=complete&_domain=delivery&deliveryId='.$deliveryId;
                         $ch = curl_init();
                         curl_setopt($ch, CURLOPT_URL, $esl);
