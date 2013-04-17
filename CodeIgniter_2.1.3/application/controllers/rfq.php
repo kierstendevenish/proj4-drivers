@@ -115,7 +115,7 @@ class Rfq extends CI_Controller {
 
         function delivered($deliveryId = '')
         {
-            $this->load->model->request();
+            $this->load->model('request');
             $esl = $this->request->getShopEslByRequest($deliveryId);
 
             $fields_str = '_name=complete&_domain=delivery&deliveryId='.$deliveryId;
