@@ -115,7 +115,25 @@ class Rfq extends CI_Controller {
 
         function delivered($deliveryId = '')
         {
-            var_dump($deliveryId);
+            $this->load->model->request();
+            $esl = $this->request->getShopEslByRequest($deliveryId);
+
+            $fields_str = '_name=complete&_domain=delivery&deliveryId='.$deliveryId;
+                        $ch = curl_init();
+                        curl_setopt($ch, CURLOPT_URL, $esl);
+                        curl_setopt($ch, CURLOPT_POST, 3);
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_str);
+                        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                        curl_exec($ch);
+                        curl_close($ch);
+
+                        $ch = curl_init();
+                        curl_setopt($ch, CURLOPT_URL, 'http://students.cs.byu.edu/~kdevenis/proj4/guild/proj4-guild/CodeIgniter_2.1.3/index.php/event/consume');
+                        curl_setopt($ch, CURLOPT_POST, 3);
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_str);
+                        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                        curl_exec($ch);
+                        curl_close($ch);
         }
 }
 

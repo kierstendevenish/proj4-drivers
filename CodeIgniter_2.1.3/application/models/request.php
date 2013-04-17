@@ -121,5 +121,23 @@ Class Request extends CI_Model
             $db = new PDO('sqlite:./application/db/deliveryDrivers');
             $result = $db->query("UPDATE Bids SET accepted=1 WHERE username='".$username."' AND delivery_id='".$deliveryId."';");
         }
+
+        function getShopEslByRequest($deliveryId = '')
+        {
+            $db = new PDO('sqlite:./application/db/deliveryDrivers');
+            $result = $db->query("SELECT fs_esl FROM Bids WHERE delivery_id='".$deliveryId."';");
+
+            if(count($result) == 1)
+                {
+                    foreach ($result as $row)
+                    {
+                        $data = $row['fs_esl'];
+                    }
+
+                    return $data;
+                }
+
+                return '';
+        }
 }
 ?>
